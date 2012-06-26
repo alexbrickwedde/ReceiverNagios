@@ -16,6 +16,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.Locale;
 import java.util.TimeZone;
 
 public class UdpReceiver
@@ -165,7 +166,7 @@ public class UdpReceiver
             final FileWriter fstream = new FileWriter (sFile);
             final BufferedWriter out = new BufferedWriter (fstream);
             final Formatter cmdf = new Formatter ();
-            out.write (cmdf.format ("%+3.1f", x).toString ());
+            out.write (cmdf.format (Locale.ENGLISH,"%+3.1f", x).toString ());
             out.close ();
 
             final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "%20" + cmdf.toString () + "&XHR=1";
