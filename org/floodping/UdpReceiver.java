@@ -389,12 +389,18 @@ public class UdpReceiver
           break;
         case 'M':
         {
-          byte x1 = dis.readByte ();
-          byte x2 = dis.readByte ();
-          final short move = (short) (((x2 & 0xff) << 8) | (x1 & 0xff));
-          x1 = dis.readByte ();
-          x2 = dis.readByte ();
-          final short move2 = (short) (((x2 & 0xff) << 8) | (x1 & 0xff));
+        	byte x[] = new byte[10];
+        	x[0] = dis.readByte();
+        	x[1] = dis.readByte();
+        	x[2] = dis.readByte();
+        	x[3] = dis.readByte();
+        	x[4] = dis.readByte();
+        	x[5] = dis.readByte();
+
+            System.out.println ("" + airid + " M:" + x[0] + "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]);
+        	
+          final short move = 0; //(short) (((x2 & 0xff) << 8) | (x1 & 0xff));
+          final short move2 = 0; //(short) (((x2 & 0xff) << 8) | (x1 & 0xff));
           if (move != move2)
           {
               System.out.println ("" + airid + " M:" + move + "=" + move2);
