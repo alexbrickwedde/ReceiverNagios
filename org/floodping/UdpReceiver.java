@@ -12,7 +12,6 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
@@ -398,6 +397,7 @@ public class UdpReceiver
           final short move2 = (short) (((x2 & 0xff) << 8) | (x1 & 0xff));
           if (move != move2)
           {
+              System.out.println ("" + airid + " M:" + move + "=" + move2);
 //            break;
           }
 
