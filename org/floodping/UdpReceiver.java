@@ -397,16 +397,7 @@ public class UdpReceiver
         	x[4] = dis.readByte();
         	x[5] = dis.readByte();
 
-            System.out.println ("" + airid + " M:" + x[0] + "," + x[1] + "," + x[2] + "," + x[3] + "," + x[4] + "," + x[5]);
-        	
-          final short move = 0; //(short) (((x2 & 0xff) << 8) | (x1 & 0xff));
-          final short move2 = 0; //(short) (((x2 & 0xff) << 8) | (x1 & 0xff));
-          if (move != move2)
-          {
-              System.out.println ("" + airid + " M:" + move + "=" + move2);
-//            break;
-          }
-
+          final int move = ((x[0] == 0xaa) && (x[1] == 0xaa)) ? 1 : 0; 
           System.out.println ("" + airid + " M:" + move);
           SimpleDateFormat df = new SimpleDateFormat ("dd.MM HH:mm:ss");
           df.setTimeZone (TimeZone.getDefault ());
