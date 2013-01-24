@@ -93,6 +93,7 @@ public class UdpReceiver implements Runnable {
 				{
 					final Formatter f = new Formatter();
 					airid = f.format("%c%c%c%c", dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte()).toString();
+					f.close();
 				}
 
 				final byte type = dis.readByte();
@@ -114,7 +115,7 @@ public class UdpReceiver implements Runnable {
 					final double zx = (z1 * 1.0) / 4.6;
 
 					final double x = xx;
-					final int res = x < -9 ? (x < -13 ? 2 : 1) : 0;
+					//final int res = x < -9 ? (x < -13 ? 2 : 1) : 0;
 					System.out.println("" + airid + " g:" + xx + "," + yx + "," + zx);
 
 					SimpleDateFormat df = new SimpleDateFormat("dd.MM HH:mm:ss");
@@ -128,6 +129,7 @@ public class UdpReceiver implements Runnable {
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format(Locale.ENGLISH, "%+3.1f", x).toString());
 						out.close();
+	          cmdf.close();
 					} catch (final Exception e) {
 						System.err.println("Error: " + e.getMessage());
 					}
@@ -177,6 +179,7 @@ public class UdpReceiver implements Runnable {
 							final FileWriter fstream = new FileWriter(sFile);
 							final BufferedWriter out = new BufferedWriter(fstream);
 							final Formatter cmdf = new Formatter();
+							cmdf.close();
 							out.write(cmdf.format("%+3.1f", T).toString());
 							out.close();
 						} catch (final Exception e) {
@@ -188,6 +191,7 @@ public class UdpReceiver implements Runnable {
 							final BufferedWriter out = new BufferedWriter(fstream);
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+3.1f", Dew).toString());
+		          cmdf.close();
 							out.close();
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
@@ -198,6 +202,7 @@ public class UdpReceiver implements Runnable {
 							final BufferedWriter out = new BufferedWriter(fstream);
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+4d", P).toString());
+			        cmdf.close();
 							out.close();
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
@@ -208,6 +213,7 @@ public class UdpReceiver implements Runnable {
 							final BufferedWriter out = new BufferedWriter(fstream);
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+3d", RH).toString());
+							cmdf.close();
 							out.close();
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
@@ -224,6 +230,7 @@ public class UdpReceiver implements Runnable {
 					final double t = (temp * 1.0) / 16;
 					final Formatter f = new Formatter();
 					final String id = f.format("%02x-%02x %02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x", x1, x2, dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte(), dis.readByte()).toString();
+          f.close();
 					x1 = dis.readByte();
 					x2 = dis.readByte();
 					final short temp2 = (short) (((x2 & 0xff) << 8) | (x1 & 0xff));
@@ -241,6 +248,7 @@ public class UdpReceiver implements Runnable {
 						final BufferedWriter out = new BufferedWriter(fstream);
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format("%+3.1f", t).toString());
+	          cmdf.close();
 						out.close();
 					} catch (final Exception e) {// Catch exception if
 													// any
@@ -268,6 +276,7 @@ public class UdpReceiver implements Runnable {
 						final BufferedWriter out = new BufferedWriter(fstream);
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format("%+1d", move).toString());
+	          cmdf.close();
 						out.close();
 					} catch (final Exception e) {// Catch exception if
 													// any
