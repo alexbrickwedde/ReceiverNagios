@@ -9,8 +9,6 @@
                 <attribute name="Class-Path" value="."/>
             </manifest>
             <fileset dir="bin"/>
-            <zipfileset excludes="META-INF/*.SF" src="smack.jar"/>
-            <zipfileset excludes="META-INF/*.SF" src="smackx.jar"/>
         </jar>
     </target>
 </project>

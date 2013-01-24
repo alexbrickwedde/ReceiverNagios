@@ -122,24 +122,12 @@ public class UdpReceiver implements Runnable {
 					Main.PutValue(airid, new Integer(new Double(x).intValue()).toString(), df.format(new Date()));
 
 					try {
-						final Formatter cmdf = new Formatter();
-						final String command = cmdf.format("/usr/bin/submit_check_result ned %s %d %+3.1fcm", airid, res, x).toString();
-						System.out.println("" + command);
-						Runtime.getRuntime().exec(command);
-					} catch (final Exception e) {
-						System.err.println("Errore: " + e.getMessage());
-					}
-
-					try {
 						final String sFile = "/tmp/airid" + airid;
 						final FileWriter fstream = new FileWriter(sFile);
 						final BufferedWriter out = new BufferedWriter(fstream);
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format(Locale.ENGLISH, "%+3.1f", x).toString());
 						out.close();
-
-						final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "%20" + cmdf.toString() + "&XHR=1";
-						System.out.println(this.GetUrl(sUrl));
 					} catch (final Exception e) {
 						System.err.println("Error: " + e.getMessage());
 					}
@@ -191,21 +179,9 @@ public class UdpReceiver implements Runnable {
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+3.1f", T).toString());
 							out.close();
-
-							final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "T%20" + cmdf.toString() + "&XHR=1";
-							System.out.println(this.GetUrl(sUrl));
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
 						}
-						try {
-							final Formatter cmdf = new Formatter();
-							final String command = cmdf.format("/usr/bin/submit_check_result ned %sT 0 %+3.1fdegC", airid, T).toString();
-							System.out.println("" + command);
-							Runtime.getRuntime().exec(command);
-						} catch (final Exception e) {
-							System.err.println("Errore: " + e.getMessage());
-						}
-
 						try {
 							final String sFile = "/tmp/airid" + airid + "D";
 							final FileWriter fstream = new FileWriter(sFile);
@@ -213,20 +189,9 @@ public class UdpReceiver implements Runnable {
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+3.1f", Dew).toString());
 							out.close();
-							final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "D%20" + cmdf.toString() + "&XHR=1";
-							System.out.println(this.GetUrl(sUrl));
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
 						}
-						try {
-							final Formatter cmdf = new Formatter();
-							final String command = cmdf.format("/usr/bin/submit_check_result ned %sD 0 %+3.1fdegC", airid, Dew).toString();
-							System.out.println("" + command);
-							Runtime.getRuntime().exec(command);
-						} catch (final Exception e) {
-							System.err.println("Errore: " + e.getMessage());
-						}
-
 						try {
 							final String sFile = "/tmp/airid" + airid + "P";
 							final FileWriter fstream = new FileWriter(sFile);
@@ -234,20 +199,9 @@ public class UdpReceiver implements Runnable {
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+4d", P).toString());
 							out.close();
-							final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "P%20" + cmdf.toString() + "&XHR=1";
-							System.out.println(this.GetUrl(sUrl));
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
 						}
-						try {
-							final Formatter cmdf = new Formatter();
-							final String command = cmdf.format("/usr/bin/submit_check_result ned %sP 0 %+4dhPa", airid, P).toString();
-							System.out.println("" + command);
-							Runtime.getRuntime().exec(command);
-						} catch (final Exception e) {
-							System.err.println("Errore: " + e.getMessage());
-						}
-
 						try {
 							final String sFile = "/tmp/airid" + airid + "RH";
 							final FileWriter fstream = new FileWriter(sFile);
@@ -255,21 +209,9 @@ public class UdpReceiver implements Runnable {
 							final Formatter cmdf = new Formatter();
 							out.write(cmdf.format("%+3d", RH).toString());
 							out.close();
-							final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "RH%20" + cmdf.toString() + "&XHR=1";
-							System.out.println(this.GetUrl(sUrl));
 						} catch (final Exception e) {
 							System.err.println("Error: " + e.getMessage());
 						}
-
-						try {
-							final Formatter cmdf = new Formatter();
-							final String command = cmdf.format("/usr/bin/submit_check_result ned %sRH 0 %+3d%%rH", airid, RH).toString();
-							System.out.println("" + command);
-							Runtime.getRuntime().exec(command);
-						} catch (final Exception e) {
-							System.err.println("Errore: " + e.getMessage());
-						}
-
 					}
 
 				}
@@ -294,23 +236,12 @@ public class UdpReceiver implements Runnable {
 					df.setTimeZone(TimeZone.getDefault());
 					Main.PutValue(airid, new Double(t).toString(), df.format(new Date()));
 					try {
-						final Formatter cmdf = new Formatter();
-						final String command = cmdf.format("/usr/bin/submit_check_result ned %s 0 %+3.1fdegC", airid, t).toString();
-						System.out.println("" + command);
-						Runtime.getRuntime().exec(command);
-					} catch (final Exception e) {
-						System.err.println("Errore: " + e.getMessage());
-					}
-
-					try {
 						final String sFile = "/tmp/airid" + airid;
 						final FileWriter fstream = new FileWriter(sFile);
 						final BufferedWriter out = new BufferedWriter(fstream);
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format("%+3.1f", t).toString());
 						out.close();
-						final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "%20" + cmdf.toString() + "&XHR=1";
-						System.out.println(this.GetUrl(sUrl));
 					} catch (final Exception e) {// Catch exception if
 													// any
 						System.err.println("Error: " + e.getMessage());
@@ -332,23 +263,12 @@ public class UdpReceiver implements Runnable {
 					df.setTimeZone(TimeZone.getDefault());
 					Main.PutValue(airid, new Integer(move).toString(), df.format(new Date()));
 					try {
-						final Formatter cmdf = new Formatter();
-						final String command = cmdf.format("/usr/bin/submit_check_result ned %s 0 %+1ddegC", airid, move).toString();
-						System.out.println("" + command);
-						Runtime.getRuntime().exec(command);
-					} catch (final Exception e) {
-						System.err.println("Errore: " + e.getMessage());
-					}
-
-					try {
 						final String sFile = "/tmp/airid" + airid;
 						final FileWriter fstream = new FileWriter(sFile);
 						final BufferedWriter out = new BufferedWriter(fstream);
 						final Formatter cmdf = new Formatter();
 						out.write(cmdf.format("%+1d", move).toString());
 						out.close();
-						final String sUrl = "http://10.1.0.3:8083/fhem?cmd=set%20airid" + airid + "%20" + cmdf.toString() + "&XHR=1";
-						System.out.println(this.GetUrl(sUrl));
 					} catch (final Exception e) {// Catch exception if
 													// any
 						System.err.println("Error: " + e.getMessage());

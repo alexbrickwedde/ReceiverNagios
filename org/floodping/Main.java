@@ -41,12 +41,6 @@ public class Main
       Thread URT = new Thread (new UdpReceiver ());
       URT.start ();
 
-      ChatReceiver CR = new ChatReceiver ();
-      Thread CRT = new Thread (CR);
-      CR.m_sUser = p.getProperty ("username");
-      CR.m_sPass = p.getProperty ("password");
-      CRT.start ();
-
       while (true)
       {
         Thread.sleep (1000);
